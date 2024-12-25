@@ -10,7 +10,6 @@ public class Utilities {
     public static Boolean checkUsername(String username) {
         Matcher matcher = allowedPattern.matcher(username);
 
-
         return matcher.find();
     }
 }

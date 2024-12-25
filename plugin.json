@@ -3,5 +3,5 @@
   "author": "LSN",
   "main": "org.lettsn.NameValidation.Main",
   "description": "A plugin that validates the name of a player. Keep in mind that this is designed for Lett's moderation plugin.",
-  "version": "0.1.1"
+  "version": "0.1.2"
 }

@@ -5,7 +5,7 @@ A plugin that validates the username of a player in Mindustry.
 ## What does this plugin do?
 It ensures that a player's username does not contain a character that cannot be easily typed
 on US-English 60% keyboards. It also ensures that a player's username isn't empty (such as
-"[scarlet]" -- which would equate out to being an empty string when using the `.name()`
+"[scarlet]" -- which would equate out to being an empty string when using the `.plainName()`
 method).
 
 ## What is the regex?

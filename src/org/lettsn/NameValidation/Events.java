@@ -3,7 +3,6 @@ package org.lettsn.NameValidation;
 import arc.util.*;
 import mindustry.game.*;
 import mindustry.game.EventType.*;
-import static org.lettsn.NameValidation.Constants.allowedPattern;
 import static org.lettsn.NameValidation.Utilities.checkUsername;
 
 /**
@@ -22,15 +21,16 @@ public class Events {
         boolean usernameEmpty = event.player.plainName().trim().isEmpty();  // isBlank() doesn't work -- likely related to Gradle
                                                                             // trying to compile to be backwards compatible.
 
-        Log.debug(String.format("PLAYER NAME: %s", event.player.name()));
-        Log.debug(String.format("PLAYER PLAIN NAME: %s", event.player.plainName()));
-        Log.debug(String.format("PLAYER COLORED NAME: %s", event.player.coloredName()));
-
         if (usernameAllowed && !usernameEmpty) {
             return;
         }
 
+        String kickMessage = (!usernameEmpty) ? "Your username contains characters that are not allowed. Ensure that " +
+                                                "it doesn't contain \"(Admin)\", \"(Staff)\", any capitalization variation " +
+                                                "of the former, or any special UTF-8 characters." : "Usernames are not " +
+                                                "allowed to be empty.";
+
         Log.info(String.format("Kicking player %s with UUID %s for an invalid username.", event.player.plainName(), event.player.uuid()));
-        event.player.kick("Invalid username! Regex pattern: " + allowedPattern, 0);
+        event.player.kick(kickMessage, 0);
     }
 }
