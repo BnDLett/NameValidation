@@ -5,6 +5,6 @@ import mindustry.mod.*;
 public class Main extends Plugin{
     @Override
     public void init() {
-        Events.init();
+        Events.load();
     }
 }

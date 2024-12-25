@@ -13,13 +13,18 @@ public class Events {
     /**
      * Initializes all events for this plugin.
      */
-    public static void init() {
+    public static void load() {
         arc.Events.on(EventType.PlayerConnect.class, Events::validateUsernameEvent);
     }
 
     public static void validateUsernameEvent(PlayerConnect event) {
         Boolean usernameAllowed = checkUsername(event.player.plainName());
-        boolean usernameEmpty = event.player.name().isEmpty();
+        boolean usernameEmpty = event.player.plainName().trim().isEmpty();  // isBlank() doesn't work -- likely related to Gradle
+                                                                            // trying to compile to be backwards compatible.
+
+        Log.debug(String.format("PLAYER NAME: %s", event.player.name()));
+        Log.debug(String.format("PLAYER PLAIN NAME: %s", event.player.plainName()));
+        Log.debug(String.format("PLAYER COLORED NAME: %s", event.player.coloredName()));
 
         if (usernameAllowed && !usernameEmpty) {
             return;
